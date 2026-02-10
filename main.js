@@ -7,12 +7,31 @@ let nextId = 1;
 // Current filter (Feature 2)
 let currentFilter = 'all';
 
+// localStorage helper functions
+function saveTodos() {
+    localStorage.setItem('todos', JSON.stringify(todos));
+}
+
+function loadTodos() {
+    const saved = localStorage.getItem('todos');
+    if (saved) {
+        todos = JSON.parse(saved);
+        // Update nextId to be higher than any existing id
+        if (todos.length > 0) {
+            nextId = Math.max(...todos.map(t => t.id)) + 1;
+        }
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     init();
     initVibeKanban();
 });
 
 function init() {
+    // Load todos from localStorage
+    loadTodos();
+
     // Wire up add button
     const addBtn = document.getElementById('addBtn');
     const todoInput = document.getElementById('todoInput');
@@ -49,6 +68,7 @@ function addTodo() {
         completed: false
     });
 
+    saveTodos();
     input.value = '';
     renderTodos();
 }
@@ -57,12 +77,14 @@ function toggleTodo(id) {
     const todo = todos.find(t => t.id === id);
     if (todo) {
         todo.completed = !todo.completed;
+        saveTodos();
         renderTodos();
     }
 }
 
 function deleteTodo(id) {
     todos = todos.filter(t => t.id !== id);
+    saveTodos();
     renderTodos();
 }
 
