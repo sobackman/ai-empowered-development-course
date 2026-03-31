@@ -15,14 +15,20 @@
         <div class="container">
             <h1>My Todos</h1>
             <div class="input-section">
-                <input type="text" id="todoInput" placeholder="Add a new todo...">
-                <button id="addBtn">Add</button>
+                <div class="input-row">
+                    <input type="text" id="todoInput" placeholder="Add a new todo...">
+                    <button id="addBtn">Add</button>
+                </div>
+                <input type="date" id="dueDateInput" class="due-date-input">
             </div>
 
-            <div class="filters">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="active">Active</button>
-                <button class="filter-btn" data-filter="completed">Completed</button>
+            <div class="controls">
+                <div class="filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="active">Active</button>
+                    <button class="filter-btn" data-filter="completed">Completed</button>
+                </div>
+                <button id="sortDueDateBtn" class="sort-btn">Sort: Due Date</button>
             </div>
 
             <ul class="todoList" id="todoList"></ul>

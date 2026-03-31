@@ -5,7 +5,7 @@
 }
 
 :root {
-    --color-primary: #3b82f6;
+    --color-primary: #10b981;
     --color-background: #ffffff;
     --color-text: #1f2937;
     --spacing: 1rem;
@@ -47,11 +47,17 @@ footer {
 /* Input section (Feature 1) */
 .input-section {
     display: flex;
-    gap: var(--spacing);
+    flex-direction: column;
+    gap: 0.5rem;
     margin-bottom: 2rem;
 }
 
-.input-section input {
+.input-row {
+    display: flex;
+    gap: var(--spacing);
+}
+
+.input-row input {
     flex: 1;
     padding: 0.75rem;
     border: 1px solid #d1d5db;
@@ -59,13 +65,13 @@ footer {
     font-size: 1rem;
 }
 
-.input-section input:focus {
+.input-row input:focus {
     outline: none;
     border-color: var(--color-primary);
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
 }
 
-.input-section button {
+.input-row button {
     padding: 0.75rem 1.5rem;
     background-color: var(--color-primary);
     color: white;
@@ -77,19 +83,43 @@ footer {
     transition: background-color 0.2s;
 }
 
-.input-section button:hover {
-    background-color: #2563eb;
+.input-row button:hover {
+    background-color: #059669;
 }
 
-.input-section button:active {
-    background-color: #1d4ed8;
+.input-row button:active {
+    background-color: #047857;
 }
 
-/* Filter buttons (Feature 2) */
+.due-date-input {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    color: var(--color-text);
+    cursor: pointer;
+    width: fit-content;
+}
+
+.due-date-input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
+}
+
+/* Controls row: filters + sort (Features 2 & 3) */
+.controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
 .filters {
     display: flex;
     gap: 0.5rem;
-    margin-bottom: 2rem;
     flex-wrap: wrap;
 }
 
@@ -114,6 +144,28 @@ footer {
     border-color: var(--color-primary);
 }
 
+.sort-btn {
+    padding: 0.5rem 1rem;
+    background-color: #f3f4f6;
+    color: var(--color-text);
+    border: 1px solid #e5e7eb;
+    border-radius: 0.375rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.sort-btn:hover {
+    background-color: #e5e7eb;
+}
+
+.sort-btn.active {
+    background-color: #6366f1;
+    color: white;
+    border-color: #6366f1;
+}
+
 /* Todo list (Feature 1) */
 .todoList {
     list-style: none;
@@ -121,7 +173,7 @@ footer {
 
 .todo-item {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 0.75rem;
     padding: 1rem;
     border: 1px solid #e5e7eb;
@@ -150,11 +202,43 @@ footer {
     height: 1.25rem;
     cursor: pointer;
     accent-color: var(--color-primary);
+    margin-top: 0.125rem;
+}
+
+.todo-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    min-width: 0;
 }
 
 .todo-text {
-    flex: 1;
     word-break: break-word;
+}
+
+.due-badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 0.125rem 0.5rem;
+    border-radius: 9999px;
+    width: fit-content;
+}
+
+.due-upcoming {
+    background-color: #dcfce7;
+    color: #15803d;
+}
+
+.due-today {
+    background-color: #fef9c3;
+    color: #a16207;
+}
+
+.due-overdue {
+    background-color: #fee2e2;
+    color: #b91c1c;
 }
 
 .todo-delete {
